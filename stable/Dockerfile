@@ -28,12 +28,7 @@ RUN apt-get update && apt-get install -y git && \
     ln -s /var/www/rutorrent/plugins/fileshare/share.php /var/www/rutorrent/no-auth/share.php && \
     rm -rf /var/www/rutorrent/plugins/check_port
 
-
-COPY ./entrypoint.sh /entrypoint.sh
-RUN chmod +x /entrypoint.sh
-
 EXPOSE 80 49160 49161
 
-ENTRYPOINT ["/entrypoint.sh"]
 CMD ["supervisord"]
 
