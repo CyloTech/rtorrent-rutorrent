@@ -19,6 +19,10 @@ RUN apt-get update && apt-get install -y git && \
     cp ./a/supervisord.conf /etc/supervisor/conf.d/ && \
     sed -i 's#/var/log#/torrents/config/log#g' /etc/nginx/nginx.conf && \
     sed -i 's#worker_processes auto#worker_processes 2#g' /etc/nginx/nginx.conf && \
+    sed -i 's#pm.max_children = 5#pm.max_children = 3#g' /etc/nginx/nginx.conf && \
+    sed -i 's#pm.start_servers = 2#pm.start_servers = 1#g' /etc/nginx/nginx.conf && \
+    sed -i 's#pm.min_spare_servers = 1#pm.min_spare_servers = 1#g' /etc/nginx/nginx.conf && \
+    sed -i 's#pm.max_spare_servers = 3#pm.max_spare_servers = 2#g' /etc/nginx/nginx.conf && \
     git clone https://github.com/nelu/rutorrent-thirdparty-plugins.git plugins && \
     mv ./plugins/filemanager  /var/www/rutorrent/plugins/ && \
     mv ./plugins/fileshare /var/www/rutorrent/plugins/ && \
